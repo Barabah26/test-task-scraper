@@ -1,0 +1,71 @@
+server:
+  port: 9080
+
+---
+
+spring:
+  profiles:
+    active: prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-postgres.sql
+  datasource:
+    url: jdbc:postgresql://pg-369f4249-pavlobarabah-bf5c.f.aivencloud.com:16458/defaultdb?sslmode=require
+    username: avnadmin
+    password: AVNS_osIpNacsTgfkJ8a0t02
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        generate_statistics: false
+    show-sql: false
+  logging:
+    level:
+      org: info
+      com: off
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema-postgres.sql
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookShop
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        generate_statistics: false
+    show-sql: false
+  logging:
+    level:
+      org: info
+      com: off
+---
+spring:
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+
